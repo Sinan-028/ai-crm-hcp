@@ -1,4 +1,5 @@
 import {
+  Box,
   Drawer,
   List,
   ListItemButton,
@@ -63,12 +64,22 @@ export default function Sidebar() {
       }}
     >
       <Toolbar>
-        <Typography
-          variant="h6"
-          fontWeight={700}
-        >
-          AI CRM
-        </Typography>
+       <Box sx={{ mb: 4 }}>
+  <Typography
+    variant="h5"
+    fontWeight={800}
+    color="primary"
+  >
+    AI CRM HCP
+  </Typography>
+
+  <Typography
+    variant="caption"
+    color="text.secondary"
+  >
+    Enterprise Edition
+  </Typography>
+</Box>
       </Toolbar>
 
       <List>

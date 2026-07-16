@@ -1,4 +1,6 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column
+from sqlalchemy import Integer
+from sqlalchemy import String
 
 from app.db.database import Base
 
@@ -10,8 +12,8 @@ class HCP(Base):
 
     name = Column(String(150), nullable=False)
 
-    specialty = Column(String(100))
+    specialty = Column(String(100), nullable=True)
 
-    hospital = Column(String(150))
+    hospital = Column(String(150), nullable=True)
 
-    city = Column(String(100))
+    city = Column(String(100), nullable=True)

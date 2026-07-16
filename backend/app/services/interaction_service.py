@@ -1,18 +1,38 @@
 from sqlalchemy.orm import Session
 
-from app.models.interaction import Interaction
-from app.schemas.interaction import InteractionCreate
+from app.repositories.interaction_repository import InteractionRepository
 
 
-def create_interaction(db: Session, data: InteractionCreate):
-    interaction = Interaction(**data.model_dump())
+class InteractionService:
 
-    db.add(interaction)
-    db.commit()
-    db.refresh(interaction)
+    def __init__(self, db: Session):
 
-    return interaction
+        self.repo = InteractionRepository(db)
 
+    def create(self, data):
 
-def get_interactions(db: Session):
-    return db.query(Interaction).all()
+        return self.repo.create(data)
+
+    def get_all(self):
+
+        return self.repo.get_all()
+
+    def get(self, interaction_id):
+
+        return self.repo.get_by_id(interaction_id)
+
+    def update(
+        self,
+        interaction_id,
+        data,
+    ):
+
+        interaction = self.repo.get_by_id(interaction_id)
+
+        if not interaction:
+            return None
+
+        return self.repo.update(
+            interaction,
+            data,
+        )

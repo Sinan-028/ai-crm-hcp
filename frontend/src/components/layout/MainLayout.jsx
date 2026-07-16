@@ -11,15 +11,18 @@ export default function MainLayout({ children }) {
       <Topbar />
 
       <Box
-        sx={{
-          ml: "260px",
-          p: 4,
-        }}
-      >
-        <Toolbar />
+  component="main"
+  sx={{
+    ml: "260px",
+    minHeight: "100vh",
+    backgroundColor: "#F8FAFC",
+    p: 4,
+  }}
+>
+  <Toolbar />
 
-        {children}
-      </Box>
+  {children}
+</Box>
     </>
   );
 }
