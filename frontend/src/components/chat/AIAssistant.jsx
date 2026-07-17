@@ -1,38 +1,58 @@
 import {
-  Paper,
   Typography,
   TextField,
   Button,
   Box,
+  Alert,
 } from "@mui/material";
+import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 
 export default function AIAssistant() {
   return (
-    <Paper sx={{ p: 3, borderRadius: 3, height: "100%" }}>
-      <Typography variant="h6" fontWeight={700}>
-        AI Assistant
+    <>
+      <Typography
+        variant="body2"
+        color="text.secondary"
+        sx={{ mb: 2 }}
+      >
+        Describe the interaction naturally. AI will generate a concise
+        summary, analyze the doctor's sentiment, and recommend the next
+        best action.
       </Typography>
 
-      <Typography
-        color="text.secondary"
-        mt={2}
+      <Alert
+        severity="info"
+        sx={{ mb: 2 }}
       >
-        Describe your interaction naturally.
-      </Typography>
+        Example:
+        <br />
+        "Met Dr. Sarah Wilson to discuss DiaCare Plus. The doctor showed
+        interest and requested additional clinical evidence."
+      </Alert>
 
       <TextField
+        label="Interaction Description"
         multiline
         rows={10}
         fullWidth
-        sx={{ mt: 2 }}
-        placeholder="Today I met Dr. Sharma..."
+        placeholder="Describe the interaction here..."
+        sx={{ mb: 2 }}
       />
 
-      <Box mt={2}>
-        <Button variant="contained">
-          Generate Summary
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "flex-end",
+        }}
+      >
+        <Button
+          variant="contained"
+          startIcon={<AutoAwesomeIcon />}
+          size="large"
+        >
+          Generate AI Summary
         </Button>
       </Box>
-    </Paper>
+    </>
   );
 }

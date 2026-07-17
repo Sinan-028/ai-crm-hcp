@@ -1,13 +1,15 @@
 import {
   Box,
   Button,
+  Divider,
+  FormControlLabel,
+  FormLabel,
   Grid,
   MenuItem,
   Paper,
   Radio,
   RadioGroup,
-  FormControlLabel,
-  FormLabel,
+  Stack,
   TextField,
   Typography,
 } from "@mui/material";
@@ -17,25 +19,78 @@ export default function InteractionForm() {
     <Paper
       sx={{
         p: 4,
-        borderRadius: 4,
+        borderRadius: 3,
       }}
     >
-      <Typography
-        variant="h5"
-        fontWeight={700}
-        mb={3}
-      >
-        Log HCP Interaction
+      <Typography variant="h5" fontWeight={700}>
+        Healthcare Professional Interaction
       </Typography>
 
+      <Typography color="text.secondary" mb={3}>
+        Record meeting details for future reference and AI analysis.
+      </Typography>
+
+      {/* Healthcare Professional */}
+      <Typography variant="h6" mb={2}>
+        Healthcare Professional
+      </Typography>
+
+      <Divider sx={{ mb: 3 }} />
+
       <Grid container spacing={2}>
+        <Grid item xs={12} md={6}>
+          <TextField
+            select
+            label="HCP Name"
+            fullWidth
+            defaultValue="Dr. Sarah Wilson"
+          >
+            <MenuItem value="Dr. Sarah Wilson">
+              Dr. Sarah Wilson
+            </MenuItem>
+
+            <MenuItem value="Dr. John Smith">
+              Dr. John Smith
+            </MenuItem>
+
+            <MenuItem value="Dr. Emily Davis">
+              Dr. Emily Davis
+            </MenuItem>
+          </TextField>
+        </Grid>
 
         <Grid item xs={12} md={6}>
           <TextField
-            label="HCP Name"
+            label="Specialty"
             fullWidth
-            placeholder="Search or select HCP"
+            defaultValue="Cardiologist"
           />
+        </Grid>
+
+        <Grid item xs={12} md={6}>
+          <TextField
+            label="Hospital"
+            fullWidth
+            defaultValue="Apollo Hospital"
+          />
+        </Grid>
+
+        <Grid item xs={12} md={6}>
+          <TextField
+            label="City"
+            fullWidth
+            defaultValue="Bangalore"
+          />
+        </Grid>
+
+        {/* Meeting Details */}
+
+        <Grid item xs={12}>
+          <Typography variant="h6" mt={2}>
+            Meeting Details
+          </Typography>
+
+          <Divider sx={{ mt: 1, mb: 2 }} />
         </Grid>
 
         <Grid item xs={12} md={6}>
@@ -43,42 +98,77 @@ export default function InteractionForm() {
             select
             label="Interaction Type"
             fullWidth
-            defaultValue="Meeting"
+            defaultValue="Doctor Visit"
           >
-            <MenuItem value="Meeting">Meeting</MenuItem>
-            <MenuItem value="Call">Call</MenuItem>
+            <MenuItem value="Doctor Visit">Doctor Visit</MenuItem>
+            <MenuItem value="Phone Call">Phone Call</MenuItem>
             <MenuItem value="Conference">Conference</MenuItem>
-            <MenuItem value="Product Demo">Product Demo</MenuItem>
+            <MenuItem value="Product Presentation">
+              Product Presentation
+            </MenuItem>
           </TextField>
         </Grid>
 
         <Grid item xs={12} md={6}>
           <TextField
-            type="date"
-            label="Date"
+            select
+            label="Meeting Mode"
             fullWidth
-            InputLabelProps={{
-              shrink: true,
-            }}
+            defaultValue="In Person"
+          >
+            <MenuItem value="In Person">In Person</MenuItem>
+            <MenuItem value="Online">Online</MenuItem>
+            <MenuItem value="Phone">Phone</MenuItem>
+          </TextField>
+        </Grid>
+
+        <Grid item xs={12} md={4}>
+          <TextField
+            type="date"
+            fullWidth
+            label="Date"
+            InputLabelProps={{ shrink: true }}
           />
         </Grid>
 
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={4}>
           <TextField
             type="time"
-            label="Time"
             fullWidth
-            InputLabelProps={{
-              shrink: true,
-            }}
+            label="Time"
+            InputLabelProps={{ shrink: true }}
           />
+        </Grid>
+
+        <Grid item xs={12} md={4}>
+          <TextField
+            select
+            fullWidth
+            label="Duration"
+            defaultValue="30 Minutes"
+          >
+            <MenuItem value="15 Minutes">15 Minutes</MenuItem>
+            <MenuItem value="30 Minutes">30 Minutes</MenuItem>
+            <MenuItem value="45 Minutes">45 Minutes</MenuItem>
+            <MenuItem value="60 Minutes">60 Minutes</MenuItem>
+          </TextField>
+        </Grid>
+
+        {/* Discussion */}
+
+        <Grid item xs={12}>
+          <Typography variant="h6" mt={2}>
+            Discussion Summary
+          </Typography>
+
+          <Divider sx={{ mt: 1, mb: 2 }} />
         </Grid>
 
         <Grid item xs={12}>
           <TextField
-            label="Attendees"
+            label="Products Discussed"
             fullWidth
-            placeholder="Names of attendees"
+            defaultValue="DiaCare Plus"
           />
         </Grid>
 
@@ -87,6 +177,7 @@ export default function InteractionForm() {
             multiline
             rows={4}
             label="Topics Discussed"
+            placeholder="Clinical efficacy, dosage guidelines, patient eligibility..."
             fullWidth
           />
         </Grid>
@@ -95,7 +186,7 @@ export default function InteractionForm() {
           <TextField
             label="Materials Shared"
             fullWidth
-            placeholder="Presentation, brochure..."
+            placeholder="Product brochure, clinical trial report..."
           />
         </Grid>
 
@@ -103,12 +194,12 @@ export default function InteractionForm() {
           <TextField
             label="Samples Distributed"
             fullWidth
-            placeholder="Sample details"
+            placeholder="10 Sample Packs"
           />
         </Grid>
 
         <Grid item xs={12}>
-          <FormLabel>Observed / Inferred HCP Sentiment</FormLabel>
+          <FormLabel>Doctor Sentiment</FormLabel>
 
           <RadioGroup row defaultValue="Positive">
             <FormControlLabel
@@ -135,7 +226,7 @@ export default function InteractionForm() {
           <TextField
             multiline
             rows={3}
-            label="Outcomes"
+            label="Doctor Feedback / Outcomes"
             fullWidth
           />
         </Grid>
@@ -149,45 +240,56 @@ export default function InteractionForm() {
           />
         </Grid>
 
+        {/* AI Suggestions */}
+
         <Grid item xs={12}>
           <Paper
             variant="outlined"
             sx={{
-              p: 2,
+              p: 3,
               bgcolor: "#F8FAFC",
             }}
           >
-            <Typography
-              fontWeight={700}
-              gutterBottom
-            >
-              🤖 AI Suggested Follow-up
+            <Typography variant="h6" gutterBottom>
+              🤖 AI Suggested Next Best Action
             </Typography>
 
-            <Typography variant="body2">
-              • Schedule follow-up meeting in one week
+            <Typography>
+              ✓ Schedule a follow-up visit within one week.
             </Typography>
 
-            <Typography variant="body2">
-              • Share latest clinical evidence
+            <Typography>
+              ✓ Share additional clinical evidence.
             </Typography>
 
-            <Typography variant="body2">
-              • Send product brochure
+            <Typography>
+              ✓ Send updated product brochure.
+            </Typography>
+
+            <Typography>
+              ✓ Provide additional sample packs.
             </Typography>
           </Paper>
         </Grid>
 
         <Grid item xs={12}>
-          <Button
-            variant="contained"
-            fullWidth
-            size="large"
+          <Stack
+            direction="row"
+            spacing={2}
+            justifyContent="flex-end"
           >
-            Save Interaction
-          </Button>
-        </Grid>
+            <Button variant="outlined">
+              Reset
+            </Button>
 
+            <Button
+              variant="contained"
+              size="large"
+            >
+              Save Interaction
+            </Button>
+          </Stack>
+        </Grid>
       </Grid>
     </Paper>
   );
